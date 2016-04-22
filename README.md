@@ -10,19 +10,22 @@ Written as a exercise in Go, so do not expect too much.
 
 1. Install [go](http://golang.org/doc/install)
 
-2. Install "goquery" go get -u github.com/PuerkitoBio/goquery
+2. Install "goquery" `go get -u github.com/PuerkitoBio/goquery`
+
+2. Install "go-logging" `go get -u github.com/op/go-logging`
 
 4. Compile tpb-parser
-
-        git clone git://github.com/akashihi/tpb-parser.git
-        cd tpb-parser
-        go build .
+```
+git clone git://github.com/akashihi/tpb-parser.git
+cd tpb-parser
+go build .
+```
 
 ## Running it
 
 Generally:
 
-    tpb-parser -outfile tpb.csv 
+    tpb-parser -outfile tpb.csv
 or
     tpb-parser -outfile tpb.json -json
 
