@@ -22,13 +22,13 @@ Written as a exercise in Go, so do not expect too much.
 
 Generally:
 
-    tpb-parser -output tpb.csv 
-or 
-    tpb-parser -output tpb.json -json
+    tpb-parser -outfile tpb.csv 
+or
+    tpb-parser -outfile tpb.json -json
 
 All parameters could be omited. Run with --help to get parameters description
 
-## License 
+## License
 
 See LICENSE file.
 

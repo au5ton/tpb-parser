@@ -30,17 +30,18 @@ const (
 )
 
 type TorrentEntry struct {
-	Id          int
-	Title       string
-	Size        int
-	Files       int
-	Category    string
-	Subcategory string
-	By          string
-	Hash        string
-	Uploaded    time.Time
-	Magnet      string
-	Info        string
+	Id           int
+	Title        string
+	Size         int
+	Files        int
+	Category     string
+	Subcategory  string
+	CategoryCode string
+	By           string
+	Hash         string
+	Uploaded     time.Time
+	Magnet       string
+	Info         string
 }
 
 type Downloader struct {
@@ -123,17 +124,9 @@ func (t *TorrentEntry) processFirstColumn(torrentData *goquery.Selection) {
 	}
 
 	//Categories
-	categoryData, _ := data.First().Next().Find("a").Html()
-	categoryData = strings.Replace(categoryData, "&gt;", ">", -1)
-	categories := strings.Split(categoryData, ">")
-	if len(categories) < 2 {
-		log.Warning("Can't retrieve category and sub category of torrent")
-		t.Category = "Unknown"
-		t.Subcategory = "Unknown"
-	} else {
-		t.Category = strings.TrimSpace(categories[0])
-		t.Subcategory = strings.TrimSpace(categories[1])
-	}
+	categoryData := torrentData.Find("#details .col1 :nth-child(2) a:nth-child(2)").AttrOr("href","600")
+	categoryData = strings.TrimPrefix(categoryData, "/browse/")
+	t.CategoryCode = categoryData
 
 	//Files
 	filesData, _ := data.Eq(1).Next().Find("a").Html()
